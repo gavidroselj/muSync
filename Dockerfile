@@ -1,4 +1,7 @@
-FROM golang:1.25.1 AS build
+ARG GO_VERSION=1.27.1
+
+
+FROM golang:${GO_VERSION} AS build
 
 WORKDIR /app
 
@@ -9,7 +12,7 @@ COPY . .
 
 RUN CGO_ENABLED=0 go build -o musync cmd/main.go
 
-FROM golang:1.25.1 AS dependencies
+FROM golang:${GO_VERSION} AS dependencies
 
 WORKDIR /app
 
